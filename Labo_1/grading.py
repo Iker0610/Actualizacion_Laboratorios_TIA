@@ -14,7 +14,7 @@
 
 """Common code for autograders"""
 
-import cgi
+import html
 import json
 import time
 import traceback
@@ -70,8 +70,8 @@ class Grades:
             incompleted = self.prereqs[question].difference(completedQuestions)
             if len(incompleted) > 0:
                 prereq = incompleted.pop()
-                print(f"""*** NOTE: Make sure to complete Question {prereq} before working on Question {question},
-                          *** because Question {question} builds upon your answer for Question {prereq}.""")
+                print(f"*** NOTE: Make sure to complete Question {prereq} before working on Question {question},\n"
+                      f"*** because Question {question} builds upon your answer for Question {prereq}.")
                 continue
 
             if self.mute: util.mutePrint()
@@ -283,7 +283,7 @@ to follow your instructor's guidelines to receive credit on your project.
             if self.mute: util.unmutePrint()
             print('*** ' + message)
             if self.mute: util.mutePrint()
-            message = cgi.escape(message)
+            message = html.escape(message)
         self.messages[self.currentQuestion].append(message)
 
     @staticmethod
