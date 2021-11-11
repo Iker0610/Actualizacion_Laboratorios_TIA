@@ -33,6 +33,8 @@ import signal
 import sys
 import time
 
+from collections import deque
+
 
 class FixedRandom:
     def __init__(self):
@@ -138,42 +140,94 @@ class FixedRandom:
 class Stack:
     """A container with a last-in-first-out (LIFO) queuing policy."""
 
-    def __init__(self):
-        self.list = []
+    def __init__(self, initial_values=None):
+        # Initial values must be a list in the next order: [first, second, third]
+        if initial_values is None:
+            self.stack = deque()
+        else:
+            self.stack = deque(initial_values)
 
     def push(self, item):
         """Push 'item' onto the stack"""
-        self.list.append(item)
+        self.stack.appendleft(item)
 
     def pop(self):
         """Pop the most recently pushed item from the stack"""
-        return self.list.pop()
+        return self.stack.popleft()
 
     def isEmpty(self):
         """Returns true if the stack is empty"""
-        return len(self.list) == 0
+        return len(self.stack) == 0
+
+    def head(self):
+        return self.stack[0]
+
+    def __bool__(self):
+        return bool(self.stack)
+
+    def __iter__(self):
+        # **IMPORTANT**: It will iterate poping objects
+        # You can add new objects while iterating
+        # It will stop iterating when no more items are left (empty stack)
+        while self.stack:
+            yield self.pop()
+
+    def __getitem__(self, item):
+        return self.stack[item]
+
+    def __len__(self):
+        return len(self.stack)
+
+    def __contains__(self, item):
+        return item in self.stack
 
 
 class Queue:
     """A container with a first-in-first-out (FIFO) queuing policy."""
 
-    def __init__(self):
-        self.list = []
+    def __init__(self, initial_values=None):
+        # Initial values must be a list in the next order: [first, second, third]
+        if initial_values is None:
+            self.queue = deque()
+        else:
+            self.queue = deque(initial_values)
 
     def push(self, item):
         """Enqueue the 'item' into the queue"""
-        self.list.insert(0, item)
+        self.queue.append(item)
 
     def pop(self):
         """
-          Dequeue the earliest enqueued item still in the queue. This
-          operation removes the item from the queue.
+          Dequeue the earliest enqueued item still in the queue.
+          This operation removes the item from the queue.
         """
-        return self.list.pop()
+        return self.queue.popleft()
 
     def isEmpty(self):
         """Returns true if the queue is empty"""
-        return len(self.list) == 0
+        return bool(self.queue)
+
+    def head(self):
+        return self.queue[0]
+
+    def __bool__(self):
+        return bool(self.queue)
+
+    def __iter__(self):
+        # **IMPORTANT**: It will iterate poping objects
+        # You can add new objects while iterating
+        # It will stop iterating when no more items are left (empty queue)
+        while self.queue:
+            yield self.pop()
+
+    def __getitem__(self, item):
+        return self.queue[item]
+
+    def __len__(self):
+        return len(self.queue)
+
+    def __contains__(self, item):
+        return item in self.queue
 
 
 class PriorityQueue:
@@ -198,7 +252,7 @@ class PriorityQueue:
         return item
 
     def isEmpty(self):
-        return len(self.heap) == 0
+        return bool(self)
 
     def update(self, item, priority):
         # If item already in priority queue with higher priority, update its priority and rebuild the heap.
@@ -215,6 +269,25 @@ class PriorityQueue:
         else:
             self.push(item, priority)
 
+    def __bool__(self):
+        return bool(self.heap)
+
+    def __iter__(self):
+        # **IMPORTANT**: It will iterate poping objects
+        # You can add new objects while iterating
+        # It will stop iterating when no more items are left (empty heap)
+        while self.heap:
+            yield self.pop()
+
+    def __getitem__(self, item):
+        return self.heap[item]
+
+    def __len__(self):
+        return len(self.heap)
+
+    def __contains__(self, item):
+        return item in self.heap
+
 
 class PriorityQueueWithFunction(PriorityQueue):
     """
@@ -226,17 +299,17 @@ class PriorityQueueWithFunction(PriorityQueue):
 
     def __init__(self, priorityFunction):
         """priorityFunction (item) -> priority"""
+        super().__init__()
         self.priorityFunction = priorityFunction  # store the priority function
-        PriorityQueue.__init__(self)  # super-class initializer
 
-    def push(self, item):
+    def push(self, item, *args):
         """Adds an item to the queue with priority from the priority function"""
         PriorityQueue.push(self, item, self.priorityFunction(item))
 
 
 def manhattanDistance(xy1, xy2):
     """Returns the Manhattan distance between points xy1 and xy2"""
-    return abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])
+    return sum([abs(component_1 - component_2) for component_1, component_2 in zip(xy1, xy2)])
 
 
 """
@@ -309,13 +382,9 @@ class Counter(dict):
         """
         Returns the key with the highest value.
         """
-        if len(self.keys()) == 0: return None
-        items = list(self.items())
-        values = [val for _, val in items]
-        maxIndex = values.index(max(values))
-        return items[maxIndex][0]
+        return max(self, key=self.get) if self else None
 
-    def sortedKeys(self):
+    def sortedKeys(self, reverse=True):
         """
         Returns a list of keys sorted by their values.  Keys
         with the highest values will appear first.
@@ -327,11 +396,7 @@ class Counter(dict):
         >>> a.sortedKeys()
         ['second', 'third', 'first']
         """
-        # TODO REVISAR
-        sortedItems = list(self.items())
-        compare = lambda x, y: sign(y[1] - x[1])
-        sortedItems.sort(key=compare)
-        return [x[0] for x in sortedItems]
+        return [key for key, value in sorted(self.items(), key=lambda item: item[1], reverse=reverse)]
 
     def totalCount(self):
         """
@@ -571,10 +636,7 @@ def sign(x):
     """
     Returns 1 or -1 depending on the sign of x
     """
-    if x >= 0:
-        return 1
-    else:
-        return -1
+    return 1 if x >= 0 else -1
 
 
 def arrayInvert(array):
