@@ -22,7 +22,7 @@ import layout
 import pacman
 import testClasses
 from game import Agent
-from ghostAgents import DirectionalGhost
+from ghostAgents import *
 from pacman import GameState
 
 # import grading
