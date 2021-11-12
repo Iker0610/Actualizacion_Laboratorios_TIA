@@ -21,6 +21,7 @@
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
 import traceback
+from abc import ABC, abstractmethod
 
 from util import *
 
@@ -36,7 +37,8 @@ except:
 # Parts worth reading #
 #######################
 
-class Agent:
+
+class Agent(ABC):
     """
     An agent must define a getAction method, but may also define the
     following methods which will be called if they exist:
@@ -47,6 +49,7 @@ class Agent:
     def __init__(self, index=0):
         self.index = index
 
+    @abstractmethod
     def getAction(self, state):
         """
         The Agent will receive a GameState (from either {pacman, capture, sonar}.py) and

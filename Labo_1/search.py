@@ -17,10 +17,12 @@ In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
 """
 
+from abc import ABC, abstractmethod
+
 import util
 
 
-class SearchProblem:
+class SearchProblem(ABC):
     """
     This class outlines the structure of a search problem, but doesn't implement
     any of the methods (in object-oriented terminology: an abstract class).
@@ -28,12 +30,14 @@ class SearchProblem:
     You do not need to change anything in this class, ever.
     """
 
+    @abstractmethod
     def getStartState(self):
         """
         Returns the start state for the search problem.
         """
         util.raiseNotDefined()
 
+    @abstractmethod
     def isGoalState(self, state):
         """
           state: Search state
@@ -42,6 +46,7 @@ class SearchProblem:
         """
         util.raiseNotDefined()
 
+    @abstractmethod
     def getSuccessors(self, state):
         """
           state: Search state
@@ -53,6 +58,7 @@ class SearchProblem:
         """
         util.raiseNotDefined()
 
+    @abstractmethod
     def getCostOfActions(self, actions):
         """
          actions: A list of actions to take

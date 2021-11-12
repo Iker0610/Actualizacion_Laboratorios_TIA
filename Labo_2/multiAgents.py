@@ -13,6 +13,7 @@
 
 
 import random
+from abc import ABC, abstractmethod
 
 import util
 from game import Agent
@@ -87,7 +88,7 @@ def scoreEvaluationFunction(currentGameState):
     return currentGameState.getScore()
 
 
-class MultiAgentSearchAgent(Agent):
+class MultiAgentSearchAgent(ABC, Agent):
     """
     This class provides some common elements to all of your
     multi-agent searchers.  Any methods defined here will be available
@@ -102,6 +103,7 @@ class MultiAgentSearchAgent(Agent):
     is another abstract class.
     """
 
+    @abstractmethod
     def __init__(self, evalFn='scoreEvaluationFunction', depth='2'):
         super().__init__()
         self.index = 0  # Pacman is always agent index 0
