@@ -555,8 +555,6 @@ class Game:
         self.agentCrashed = True
         self.rules.agentCrash(self, agentIndex)
 
-
-
     def mute(self, agentIndex):
         if not self.muteAgents: return
         Game.OLD_STDOUT = sys.stdout
