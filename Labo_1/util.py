@@ -142,6 +142,7 @@ class Stack:
 
     def __init__(self, initial_values=None):
         # Initial values must be a list in the next order: [first, second, third]
+        # So the first out would be the 'third' item
         if initial_values is None:
             self.stack = deque()
         else:
@@ -149,11 +150,11 @@ class Stack:
 
     def push(self, item):
         """Push 'item' onto the stack"""
-        self.stack.appendleft(item)
+        self.stack.append(item)
 
     def pop(self):
         """Pop the most recently pushed item from the stack"""
-        return self.stack.popleft()
+        return self.stack.pop()
 
     def isEmpty(self):
         """Returns true if the stack is empty"""
