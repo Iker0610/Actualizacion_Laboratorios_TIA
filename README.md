@@ -25,28 +25,29 @@ Ficheros identicos en los laboratorios indicados, lo que implica que los cambios
 
 Archivo | _Laboratorios_
 --- | --- 
-**autograder.py** | _Labo 1, Labo 2_
-**game.py** | _Labo 1, Labo 2_
-**ghostAgents.py** | _Labo 1, Labo 2_
-**grading.py** | _Labo 1, Labo 2_
-**graphicsDisplay.py** | _Labo 1, Labo 2_
-**graphicsUtils.py** | _Labo 1, Labo 2_
-**keyboardAgents.py** | _Labo 1, Labo 2_
-**layout.py** | _Labo 1, Labo 2_
-**pacman.py** | _Labo 1, Labo 2_
-**pacmanAgents.py** | _Labo 1, Labo 2_
-**testClasses.py** | _Labo 1, Labo 2_
-**testParser.py** | _Labo 1, Labo 2_
-**textDisplay.py** | _Labo 1, Labo 2_
-**util.py** | _Labo 1, Labo 2_
+**autograder.py** | _Labo 1, Labo 2, Labo 3_
+**game.py** | _Labo 1, Labo 2, Labo 3_
+**ghostAgents.py** | _Labo 1, Labo 2, Labo 3_
+**grading.py** | _Labo 1, Labo 2, Labo 3_
+**graphicsDisplay.py** | _Labo 1, Labo 2, Labo 3_
+**graphicsUtils.py** | _Labo 1, Labo 2, Labo 3_
+**keyboardAgents.py** | _Labo 1, Labo 2, Labo 3_
+**layout.py** | _Labo 1, Labo 2, Labo 3_
+**pacman.py** | _Labo 1, Labo 2, Labo 3_
+**pacmanAgents.py** | _Labo 1, Labo 2, Labo 3_
+**testClasses.py** | _Labo 1, Labo 2, Labo 3_
+**testParser.py** | _Labo 1, Labo 2, Labo 3_
+**textDisplay.py** | _Labo 1, Labo 2, Labo 3_
+**util.py** | _Labo 1, Labo 2, Labo 3_
 
 ### Honorables menciones
-- **_Mini Contest:_** 
-  - Los únicos ficheros _100%_ identicos son **game.py** y **util.py**.
-  - El resto son muy parecidos pero no identicos.
-  - Excluyo **search.py** debido a que hay que copiar y pegarlo del Labo 1 al inicio del laboratorio.
+
+- **_Mini Contest:_**
+    - Los únicos ficheros _100%_ identicos son **game.py** y **util.py**.
+    - El resto son muy parecidos pero no identicos.
+    - Excluyo **search.py** debido a que hay que copiar y pegarlo del Labo 1 al inicio del laboratorio.
 
 
-- **_Rush Hour:_** 
-  - Obviamente únicamente **util.py**
-  - Excluyo **search.py** debido a que hay que copiar y pegarlo del Labo 1 al inicio del laboratorio.
+- **_Rush Hour:_**
+    - Obviamente únicamente **util.py**
+    - Excluyo **search.py** debido a que hay que copiar y pegarlo del Labo 1 al inicio del laboratorio.
