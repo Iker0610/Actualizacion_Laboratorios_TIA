@@ -8,7 +8,7 @@ También se espera mejorar varias estructuras de datos, el formato, y aplicar la
 
 ## Objetivos
 
-- Permitir emplear versiones de Python > 3.6
+- Permitir emplear versiones de Python ≥ 3.6
 - Eliminar ciertos anti-patherns existentes en el proyecto original
 - Sustituir el formateo de strings por f-strings que son una alternativa mejor y más moderna.
 - Optimizar imports
@@ -163,6 +163,13 @@ Archivo | _Laboratorios_
 **util.py** | _Labo 1, Labo 2, Labo 3, Mini Concurso, Rush Hour_
 
 ### Honorables menciones
+
+- **_Fichero game.py:_** Este fichero contiene un atributo  **_\_directions_** que es importante:
+  - El orden de creación de este diccionario es importante en el laboratorio 2.
+    - El laboratorio 1 no depende del orden. 
+    - Se desconoce si el laboratorio 3 es sensible a estos cambios.
+  - Esto implica que es obligatorio emplear Python _**≥ 3.6**_ pues en versiones menores el orden de los diccionarios no está garantizado.
+
 
 - **_Mini Contest:_**
     - Los únicos ficheros _100%_ identicos son **game.py** y **util.py**.
