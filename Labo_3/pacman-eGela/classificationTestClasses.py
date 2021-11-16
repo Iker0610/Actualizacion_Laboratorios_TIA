@@ -146,8 +146,8 @@ DATASETS = {
 }
 
 DATASETS_LEGAL_LABELS = {
-    "smallDigitData": range(10),
-    "bigDigitData": range(10),
+    "smallDigitData": list(range(10)),
+    "bigDigitData": list(range(10)),
     "tinyDataSet": [-1, 1],
     "tinyDataSetPeceptronAndMira": [-1, 1],
     "suicideData": ["EAST", 'WEST', 'NORTH', 'SOUTH', 'STOP'],

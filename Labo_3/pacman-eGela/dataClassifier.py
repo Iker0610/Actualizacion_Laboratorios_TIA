@@ -308,7 +308,7 @@ def readCommand(argv):
         sys.exit(2)
 
     if options.data == "digits":
-        legalLabels = range(10)
+        legalLabels = list(range(10))
     else:
         legalLabels = ['Stop', 'West', 'East', 'North', 'South']
 
