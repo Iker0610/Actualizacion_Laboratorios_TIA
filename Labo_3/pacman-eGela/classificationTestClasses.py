@@ -57,9 +57,9 @@ def readDigitData(trainingSize=100, testSize=100):
     try:
         print("Extracting features...")
         featureFunction = dataClassifier.basicFeatureExtractorDigit
-        trainingData = map(featureFunction, rawTrainingData)
-        validationData = map(featureFunction, rawValidationData)
-        testData = map(featureFunction, rawTestData)
+        trainingData = list(map(featureFunction, rawTrainingData))
+        validationData = list(map(featureFunction, rawValidationData))
+        testData = list(map(featureFunction, rawTestData))
     except:
         print("An exception was raised while extracting basic features: \n")
         traceback.print_exc()
@@ -161,9 +161,9 @@ DATASETS_LEGAL_LABELS = {
 def getAccuracy(data, classifier, featureFunction=dataClassifier.basicFeatureExtractorDigit):
     trainingData, trainingLabels, validationData, validationLabels, rawTrainingData, rawValidationData, testData, testLabels, rawTestData = data
     if featureFunction != dataClassifier.basicFeatureExtractorDigit:
-        trainingData = map(featureFunction, rawTrainingData)
-        validationData = map(featureFunction, rawValidationData)
-        testData = map(featureFunction, rawTestData)
+        trainingData = list(map(featureFunction, rawTrainingData))
+        validationData = list(map(featureFunction, rawValidationData))
+        testData = list(map(featureFunction, rawTestData))
     classifier.train(trainingData, trainingLabels, validationData, validationLabels)
     guesses = classifier.classify(testData)
     correct = [guesses[i] == testLabels[i] for i in range(len(testLabels))].count(True)

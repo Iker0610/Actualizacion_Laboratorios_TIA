@@ -94,7 +94,7 @@ class Datum:
         rows = []
         data = util.arrayInvert(self.pixels)
         for row in data:
-            ascii_data = map(asciiGrayscaleConversionFunction, row)
+            ascii_data = list(map(asciiGrayscaleConversionFunction, row))
             rows.append("".join(ascii_data))
         return "\n".join(rows)
 
@@ -195,7 +195,7 @@ def convertToInteger(data):
     if not isinstance(data, list):
         return IntegerConversionFunction(data)
     else:
-        return map(convertToInteger, data)
+        return list(map(convertToInteger, data))
 
 
 # Testing
