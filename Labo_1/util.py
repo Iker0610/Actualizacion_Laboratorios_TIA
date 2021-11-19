@@ -158,7 +158,7 @@ class Stack:
 
     def isEmpty(self):
         """Returns true if the stack is empty"""
-        return len(self.stack) == 0
+        return not bool(self)
 
     def head(self):
         return self.stack[0]
@@ -206,7 +206,7 @@ class Queue:
 
     def isEmpty(self):
         """Returns true if the queue is empty"""
-        return bool(self.queue)
+        return not bool(self)
 
     def head(self):
         return self.queue[0]
@@ -253,7 +253,7 @@ class PriorityQueue:
         return item
 
     def isEmpty(self):
-        return bool(self)
+        return not bool(self)
 
     def update(self, item, priority):
         # If item already in priority queue with higher priority, update its priority and rebuild the heap.
